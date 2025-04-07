@@ -27,7 +27,7 @@ const App = () => {
             <li><Link to="/kontaktlinsen">Kontaktlinsen</Link></li>
             <li><Link to="/marken">Marken</Link></li>
             <li><Link to="/botique">Botique</Link></li>
-            <li><Link to="/">Kostenloser_sehtest</Link></li>
+            <li><Link to="/">Kostenloser Sehtest</Link></li>
             <li><Link to="/stores">Stores</Link></li>
             <li><Link to="/winterdeal">Winterdeal</Link></li>
           </ul>

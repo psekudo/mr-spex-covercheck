@@ -67,7 +67,7 @@ header h1 {
 }
 
 .icon:hover {
-  fill: lightgreen; 
+  fill: rgb(0, 192, 0);; 
 }
 
 /* Navigation Styling starts here */
@@ -112,11 +112,11 @@ nav ul li a {
 nav ul li a:hover,
 nav ul li a:active,
 nav ul li a:focus{
-  color: lightgreen;
+  color: rgb(0, 192, 0);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
-  border-bottom: 2px solid lightgreen; 
+  border-bottom: 2px solid rgb(0, 192, 0);; 
   padding-bottom: 1rem;
 }
 
@@ -160,7 +160,7 @@ nav ul li a:focus{
   font-weight: 600;
   color: #ffffff;
   border-radius: 10rem;
-  background-color: lightgreen;
+  background-color: rgb(0, 192, 0);;
 }
 
 .indicator-off{
@@ -171,7 +171,7 @@ nav ul li a:focus{
   height: 3rem;
   font-size: 14px;
   font-weight: 600;
-  color: lightgreen;
+  color: rgb(0, 192, 0);;
   border-radius: 10rem;
   background-color: #ffffff;
 }
@@ -241,7 +241,7 @@ input:focus {
   border-radius: 10rem;
   font-weight: 600;
   background: #ffffff;
-  border: 1px solid lightgreen;
+  border: 1px solid rgb(0, 192, 0);;
   margin-top: 0.75rem;
   outline: none;
 }
@@ -264,7 +264,7 @@ input:focus {
   padding: 1rem;
   border-radius: 0.75rem;
   border: 1px solid lightgreen;
-  background-color: rgb(245, 255, 245);
+  background-color: rgb(0, 192, 0);;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
@@ -327,7 +327,7 @@ button{
   justify-content: center;
   align-items: center;
   color: #ffffff;
-  background-color: lightgreen;
+  background-color: rgb(0, 192, 0);;
   border: none;
   height: 3.4rem;
   width: 15rem;
@@ -344,7 +344,7 @@ button{
 .insure-another-person-button:hover,
 .insure-another-person-button:focus,
 .insure-another-person-button:active{
-  background-color: lightgreen;
+  background-color: rgb(0, 192, 0);;
   border: none;
 }
 
@@ -391,10 +391,10 @@ button{
 }
 
 .continue-button{
-  color: lightgreen;
+  color: rgb(0, 192, 0);;
   background: #ffffff;
   font-weight: 800;
-  border: 1.5px solid lightgreen;
+  border: 1.5px solid rgb(0, 192, 0);;
 }
 
 .back-button{
@@ -404,7 +404,7 @@ button{
 
 .complete-button{
   color: #ffffff;
-  background: lightgreen;
+  background: rgb(0, 192, 0);;
   font-weight: 800;
 }
 
@@ -444,7 +444,7 @@ button{
     padding: 0.25rem;
     left: 0;
     margin-top: -1rem;
-    background-color: lightgreen;
+    background-color: rgb(0, 192, 0);;
   }
 
   .mobile-header-h1{
@@ -518,11 +518,11 @@ button{
   nav ul li a:hover,
   nav ul li a:active,
   nav ul li a:focus{
-    color: lightgreen;
+    color: rgb(0, 192, 0);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05rem;
-    border-bottom: 2px solid lightgreen; 
+    border-bottom: 2px solid rgb(0, 192, 0); 
     padding-bottom: 1rem;
   }
 
@@ -564,7 +564,7 @@ button{
     font-weight: 600;
     color: #ffffff;
     border-radius: 0.75rem;
-    background-color: lightgreen;
+    background-color: rgb(0, 192, 0);;
   }
   
   .indicator-off{
@@ -663,7 +663,7 @@ button{
     border-radius: 10rem;
     font-weight: 600;
     background: #ffffff;
-    border: 1px solid lightgreen;
+    border: 1px solid rgb(0, 192, 0);;
     margin-top: 0.75rem;
     outline: none;
   }
@@ -683,7 +683,7 @@ button{
     height: fit-content;
     padding: 0.5rem;
     border-radius: 0.75rem;
-    border: 1px solid lightgreen;
+    border: 1px solid rgb(0, 192, 0);;
     background-color: rgb(245, 255, 245);
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
@@ -744,7 +744,7 @@ button{
     justify-content: center;
     align-items: center;
     color: #ffffff;
-    background-color: lightgreen;
+    background-color: rgb(0, 192, 0);;
     border: none;
     height: 3.5rem;
     width: 100%;
@@ -802,10 +802,10 @@ button{
   }
 
   .continue-button{
-    color: lightgreen;
+    color: rgb(0, 192, 0);;
     background: #ffffff;
     font-weight: 800;
-    border: 1.5px solid lightgreen;
+    border: 1.5px solid rgb(0, 192, 0);;
     width: 100%;
   }
   
@@ -817,7 +817,7 @@ button{
   
   .complete-button{
     color: #ffffff;
-    background: lightgreen;
+    background: rgb(0, 192, 0);;
     font-weight: 800;
     width: 100%;
   }
