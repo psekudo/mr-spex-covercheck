@@ -20,134 +20,37 @@ header {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
 }
 
-
-header img {
-  width: 9rem;
-  object-fit: contain;
-  background-color: transparent;
-}
-
-header h1 {
-  font-size: 16px;
-  color: black;
-  font-weight: 400;
-}
-
-.display-block-title{
-  display: block;
-}
-
-.display-block-title-mobile{
-  display: none;
-}
-
-.icon-placeholder{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 1.5rem;
-  max-height: 1.5rem;
-  object-fit: contain;
-}
-
-.info-icon-field{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 1.5rem;
-  max-height: 1.5rem;
-  object-fit: contain;
-}
-
-.icon {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  fill: gray;
-}
-
-.icon:hover {
-  fill: rgb(0, 192, 0);; 
-}
-
-/* Navigation Styling starts here */
-
-.navigation-bar{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  height: fit-content;
-  margin: 0 auto;
-  margin-top: -0.25rem;
-  margin-bottom: -0.25rem;
-  background-color: none;
-  padding: 0rem;
-}
-
-.router-layout{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 0;
-  margin-bottom: 0;
-  width: fit-content;
-  border-radius: 10rem;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
-  padding: 0.9rem 2.75rem 0.9rem 2.75rem;
-}
-
-
-nav ul li a {
-  text-decoration: none;
-  color: darkgreen;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
-}
-
-nav ul li a:hover,
-nav ul li a:active,
-nav ul li a:focus{
-  color: rgb(0, 192, 0);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
-  border-bottom: 2px solid rgb(0, 192, 0);; 
-  padding-bottom: 1rem;
-}
-
 /*From here onwards the stylings belong to the page content multistep form*/
 
 .multi_step_form{
+  display: grid;
+  grid-template-columns: 1fr;
   justify-content: center;
   align-items: center;
   max-width: 60rem;
   height: fit-content;
   margin: 0 auto;
   margin-top: 1rem;
-  background-color: #ffffff;
-  border: 0px solid #f4f4f4;
-  border-radius: 3rem;
-  padding: 1rem 1rem 1rem 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
+  background-color: none;
+  border: none;
 }
 
 .form-step-indicator{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   padding: 0.5rem;
-  width: 100%;
-  margin-bottom: 1rem;
+  width: 60rem;
+  margin-bottom: 0rem;
   background-color: #f4f4f4;
   border-radius: 10rem;
+}
+
+.form-step-indicator-mobile{
+  display: none;
 }
 
 .indicator-on{
@@ -160,7 +63,7 @@ nav ul li a:focus{
   font-weight: 600;
   color: #ffffff;
   border-radius: 10rem;
-  background-color: rgb(0, 192, 0);;
+  background-color: #09B285;
 }
 
 .indicator-off{
@@ -171,7 +74,7 @@ nav ul li a:focus{
   height: 3rem;
   font-size: 14px;
   font-weight: 600;
-  color: rgb(0, 192, 0);;
+  color: #09B285;
   border-radius: 10rem;
   background-color: #ffffff;
 }
@@ -196,13 +99,36 @@ h2 {
   color: black;
 }
 
-.form-grid-layout{
+.form-cell{
+  display: flex;
+  flex-direction: column;
+  max-width: 62rem;
+  height: fit-content;
+  margin-bottom: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.insurance-grid-layout{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 1rem;
   row-gap: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
+  height: fit-content;
+  width: 100%;
 }
+
+.form-grid-layout{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  margin-top: 0.5rem;
+}
+
 .form-grid-layout-two{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -213,82 +139,158 @@ h2 {
   width: 80%;
 }
 
-label{
-  font-size: 14px;
-  font-weight: 600;
-  color: black;
-  margin-bottom: -1rem;
-  letter-spacing: 0.025rem;
+.mini-grid-layout{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  margin-top: 0;
 }
 
-input {
-  padding: 1rem;
+.payment-options-grid-layout{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.payment-option-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
   width: 100%;
-  margin: 2rem auto;
-  border-radius: 10rem;
-  color: gray;
-  font-weight: 400;
-  background: #f4f4f4;
-  border: none;
-  margin-top: 0.75rem;
+  height: 6rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  border: 1px solid #09B285;
 }
 
-input:active,
-input:hover,
-input:focus {
-  padding: 1rem;
-  margin: 1.875rem auto;
-  border-radius: 10rem;
-  font-weight: 600;
-  background: #ffffff;
-  border: 1px solid rgb(0, 192, 0);;
-  margin-top: 0.75rem;
-  outline: none;
+.information-field{
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  height: fit-content;
+  margin-top: 0rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
+  border-radius: 1rem;
+  padding: 0.5rem;
 }
 
-.date-input{
-  width: 15rem;
-  font-weight: 600;
-  font-size: 14px;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.green-checkbox-price-field{
+.space-between{
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
   width: 100%;
-  height: 5rem;
-  padding: 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid lightgreen;
-  background-color: rgb(0, 192, 0);;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
-.sub-text-field{
-  font-size: 14px;
-  font-weight: 400;
-  color: gray;
-}
-
-.sub-text-field-small{
-  font-size: 12px;
-  font-weight: 400;
-  color: gray;
-  margin-top: 0rem;
-}
-
-.checkbox-title{
+.show-more-button{
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #09B285;
+  background-color: #ffffff;
+  border: none;
+  height: 3rem;
+  max-width: fit-content;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  padding: 1rem;
+  margin-right: 0rem;
 }
 
-.align-text-vert{
+.show-more-button:hover{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #09B285;
+  background-color: #ffffff;;
+  border: 1px solid #09B285;
+  border-radius: 10rem;
+  height: 3rem;
+  max-width: fit-content;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.more-information-container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: fit-content;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #09B285;
+  background-color: #F8FFF9;
+  margin-top: 0.5rem;
+}
+
+.more-info-group{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: fit-content;
+  width: fit-content;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.more-info-unit{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.insurance-cell{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  height: fit-content;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
+  padding: 0.5rem;
+}
+.insurance-type{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+}
+
+.type-font{
+  font-size: 14px;
+  font-weight: 600;
+  color: #09B285;
+}
+
+.insurer-price-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  border-radius: 0.5rem;
+  border: 1px solid #09B285;
+  margin-top: 0.5rem;
+  padding: 0.5rem
+}
+
+.left-double-price-align{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -297,88 +299,224 @@ input:focus {
   padding-left: 0.5rem;
 }
 
+.double-price-font{
+  font-size: 15px;
+  font-weight: 600;
+  color: #09B285;
+}
+
+.insurance-price{
+  font-size: 28px;
+  font-weight: 600;
+  color: gray;
+}
+
+.choose-insurance-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  background-color: #09B285;
+  border-radius: 10rem;
+  height: 3.4rem;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+}
+
+label{
+  font-size: 14px;
+  font-weight: 600;
+  color: black;
+  margin-bottom: -1rem;
+  letter-spacing: 0.025rem;
+}
+
+input:active,
+input:hover,
+input:focus {
+  padding: 0.93rem 1.25rem; 
+  font-weight: 600;
+  background: #ffffff;
+  border: 1px solid rgb(0, 192, 0);;
+  outline: none;
+  margin-top: 0.75rem;
+}
+
+input[type="date"]:active,
+input[type="date"]:hover,
+input[type="date"]:focus {
+  padding: 0.82rem 1.25rem; 
+  font-weight: 600;
+  background: #ffffff;
+  border: 1px solid rgb(0, 192, 0);;
+  outline: none;
+  margin-top: 0.75rem;
+}
+
+select:active,
+select:hover,
+select:focus {
+  padding: 0.93rem 1.25rem; 
+  font-weight: 600;
+  background: #ffffff;
+  border: 1px solid rgb(0, 192, 0);;
+  outline: none;
+  margin-top: 0.75rem;
+}
+
+input,
+select {
+  padding: 1rem 1.25rem;        /* vertical and horizontal padding */
+  width: 100%;
+  margin: 2rem auto;
+  border-radius: 10rem;
+  color: gray;
+  font-weight: 400;
+  background: #f4f4f4;
+  border: none;
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;            /* forces consistent text height */
+  appearance: none;            /* removes default browser styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-sizing: border-box;
+}
+
+
+select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='gray' d='M2 0L0 2h4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.25rem center;
+  background-size: 0.65rem auto;
+  padding-right: 2.5rem;
+}
+
+input[type="date"] {
+  padding: 0.875rem 1.25rem;
+  width: 100%;
+  margin: 2rem auto;
+  border-radius: 10rem;
+  color: gray;
+  font-weight: 600;
+  background: #f4f4f4;
+  border: none;
+  margin-top: 0.75rem;
+  font-size: 14px;
+  line-height: 1.5;
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.ambulant-container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: fit-content;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #09B285;
+  background-color: #F8FFF9;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+
+.ambulant-title-two{
+  font-size: 14px;
+  font-weight: 800;
+  color: black;
+  margin-top: 1rem;
+}
+
+.green-price-field{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  height: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #09B285;
+  background-color: #F8FFF9;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.sub-text-field{
+  font-size: 16px;
+  font-weight: 400;
+  color: gray;
+}
+
+.sub-text-field-small{
+  font-size: 20px;
+  font-weight: 800;
+  color: black;
+  margin-top: 1rem;
+}
+
+.health-question{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0rem;
+}
+
+.yes-no-button{
+  padding: 0.8rem 2rem 0.8rem 2rem;
+  margin-left: 0.5rem;
+  margin-top: 0rem;
+}
+
+.yes-no-button:active,
+.yes-no-button:hover,
+.yes-no-button:focus{
+  padding: 0.8rem 2rem 0.8rem 2rem;
+  margin-left: 0.5rem;
+  margin-top: 0rem;
+  background-color: #09B285;
+  color: #ffffff;
+}
+
+.align-text-left{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: fit-content;
+  width: fit-content;
+  padding-left: 0.5rem;
+}
+.align-text-right{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: fit-content;
+  width: fit-content;
+  padding-right: 0.5rem;
+}
+
+.checkbox-text-hor{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 button{
-  padding: 1rem 6rem 1rem 6rem;
+  padding: 1rem 8rem 1rem 8rem;
   margin: 5rem auto;
   border-radius: 10rem;
   font-size: 18px;
   font-weight: 800;
   border: none;
   margin-top: 1rem;
-}
-
-.show-more-button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: gray;
-  background-color: #ffffff;
-  border: 2px solid lightgray;
-  height: 3.4rem;
-  width: 15rem;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.show-more-button:hover{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-  background-color: rgb(0, 192, 0);;
-  border: none;
-  height: 3.4rem;
-  width: 15rem;
-  font-size: 14px;
-  font-weight: 800;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.insure-another-person-button{
-  border: 2px solid lightgray;
-}
-
-.insure-another-person-button:hover,
-.insure-another-person-button:focus,
-.insure-another-person-button:active{
-  background-color: rgb(0, 192, 0);;
-  border: none;
-}
-
-.add-ins-icon{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  fill: gray;
-  margin-right: 0rem;
-  margin-left: -8rem;
-}
-
-.download-documents-button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: lightgray;
-  background-color: #ffffff;
-  border: 2px solid lightgray;
-  height: 3rem;
-  width: 18rem;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 2rem;
-  border-radius: 10rem;
-}
-
-.download-icon{
-  width: 60%;
-  height: 60%;
-  object-fit: contain;
-  fill: lightgray;
-  margin-right: -3.5rem;
-  margin-left: -5rem;
+  margin-bottom: 0;
 }
 
 .space-between-buttons{
@@ -397,6 +535,12 @@ button{
   border: 1.5px solid rgb(0, 192, 0);;
 }
 
+.continue-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
 .back-button{
   color: #ffffff;
   background: lightgray;
@@ -408,6 +552,46 @@ button{
   font-weight: 800;
 }
 
+
+
+
+.custom-checkbox input[type="checkbox"] {
+  appearance: none;            /* Remove default checkbox styling */
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-checkbox input[type="checkbox"]:checked {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.custom-checkbox input[type="checkbox"]:checked::after {
+  content: '✔';
+  position: absolute;
+  left: 3px;
+  top: -2px;
+  font-size: 16px;
+  color: white;
+}
+
+.split-a-bit{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+
 /* When the screen width hits 960px, we increase the global font size to 14px. This changes
      the scale of all of our relative units (the rems), keeping everything in proportion */
 
@@ -415,141 +599,35 @@ button{
 
 @media screen and (max-width: 45em) {
 
-  header {
-    text-align: center;
-    margin: 0.5rem auto;
-    padding: 0rem 1.5rem 0rem 1.5rem;
-    background: #ffffff;
-    margin-top: 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
-  }
-  
-  
-  header img {
-    width: 8rem;
-    object-fit: contain;
-    background-color: transparent;
-  }
 
-  .display-block-title{
-    display: none;
-  }
-  
-  .display-block-title-mobile{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: 100%;
-    padding: 0.25rem;
-    left: 0;
-    margin-top: -1rem;
-    background-color: rgb(0, 192, 0);;
-  }
-
-  .mobile-header-h1{
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .icon-placeholder{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 1.25rem;
-    max-height: 1.25rem;
-    object-fit: contain;
-  }
-  
-  .info-icon-field{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 1.25rem;
-    max-height: 1.25rem;
-    object-fit: contain;
-  }
-
-  .navigation-bar{
-    display: flex;
+  .multi_step_form{
+    display: grid;
+    grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
     max-width: 100%;
     height: fit-content;
     margin: 0 auto;
-    margin-top: 0rem;
-    margin-bottom: 0rem;
-    background-color: none;
-    padding: 0rem;
-  }
-  
-  .router-layout {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 1rem;
-    margin: 0;
-    width: 100%;
-    border-radius: 0;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
-    padding: 0.5rem 2.75rem;
-    overflow-x: auto;
-    white-space: nowrap; 
-  }
-
-  .router-layout ul {
-    display: inline-block;
-    padding: 0; 
-    margin: 0; 
-  }
-
-
-  nav ul li a {
-    text-decoration: none;
-    color: darkgreen;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05rem;
-  }
-  
-  nav ul li a:hover,
-  nav ul li a:active,
-  nav ul li a:focus{
-    color: rgb(0, 192, 0);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05rem;
-    border-bottom: 2px solid rgb(0, 192, 0); 
-    padding-bottom: 1rem;
-  }
-
-  .multi_step_form{
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: fit-content;
-    margin: 0 auto;
     margin-top: 1rem;
-    background-color: #ffffff;
-    border: 0px solid #f4f4f4;
-    border-radius: 1.25rem;
-    padding: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
+    background-color: none;
+    border: none;
   }
+  
   
   .form-step-indicator{
+    display: none;
+  }
+
+  .form-step-indicator-mobile{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     padding: 0.5rem;
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0rem;
     background-color: #f4f4f4;
     border-radius: 1rem;
   }
@@ -599,13 +677,36 @@ button{
     font-weight: 400;
     color: black;
   }
+
+  .form-cell{
+    display: flex;
+    flex-direction: column;
+    max-width: 42rem;
+    height: fit-content;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
+    border-radius: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .insurance-grid-layout{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    margin-top: 1rem;
+    height: fit-content;
+    max-width: 42rem;
+  }
   
   .form-grid-layout{
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 1rem;
     row-gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .form-grid-layout-two{
@@ -619,60 +720,116 @@ button{
     width: 100%;
   }
 
-  .ambulant-container {
+  .information-field{
     display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
+    flex-direction: column;
+    align-items: center;
     margin: 0 auto;
-    margin-top: 1rem;
-  }
-
-  .ambulant-title{
-    margin-left: 0rem;
+    max-width: 100%;
+    height: fit-content;
     margin-top: 0rem;
-    color: gray;
-  }
-
-  
-  label{
-    font-size: 14px;
-    font-weight: 600;
-    color: gray;
-    margin-bottom: -2rem;
-    letter-spacing: 0rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
+    border-radius: 1rem;
+    padding: 0.5rem;
   }
   
-  input {
-    padding: 1rem;
-    width: 100%;
-    margin: 2rem auto;
-    border-radius: 10rem;
-    color: gray;
-    font-weight: 400;
-    background: #f4f4f4;
+  .space-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 40rem;
+  }
+  
+  .show-more-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #09B285;
+    background-color: #ffffff;
     border: none;
+    height: 3rem;
+    max-width: fit-content;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    padding: 1rem;
+    margin-right: 0rem;
+  }
+  
+  .show-more-button:hover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #09B285;
+    background-color: #ffffff;;
+    border: 1px solid #09B285;
+    border-radius: 10rem;
+    height: 3rem;
+    max-width: fit-content;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 1rem;
+  }
+  
+  .more-information-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: fit-content;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #09B285;
+    background-color: #F8FFF9;
     margin-top: 0.5rem;
   }
   
-  input:active,
-  input:hover,
-  input:focus {
-    padding: 1rem;
-    margin: 1.875rem auto;
-    border-radius: 10rem;
-    font-weight: 600;
-    background: #ffffff;
-    border: 1px solid rgb(0, 192, 0);;
-    margin-top: 0.75rem;
-    outline: none;
+  .more-info-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: fit-content;
+    width: fit-content;
+    gap: 1rem;
+    padding: 0.5rem;
   }
   
-  .date-input{
-    width: 13rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  .more-info-unit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
   }
+
+  .insurance-cell{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 100%;
+    height: fit-content;
+    border-radius: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
+    padding: 0.5rem;
+  }
+
+  .ambulant-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: fit-content;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #09B285;
+    background-color: #F8FFF9;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+  }
+  
 
   .green-checkbox-price-field{
     display: flex;
@@ -715,78 +872,6 @@ button{
     height: fit-content;
     width: fit-content;
     padding-left: 0.5rem;
-  }
-
-  button{
-    padding: 1rem;
-    margin: 0 auto;
-    border-radius: 10rem;
-    font-size: 20px;
-    font-weight: 800;
-    border: none;
-    margin-top: 0.5rem;
-  }
-  
-  .show-more-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: gray;
-    background-color: #ffffff;
-    border: 2px solid lightgray;
-    height: 3.5rem;
-    width: 100%;
-    margin-top: 1rem;
-  }
-  
-  .show-more-button:hover{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ffffff;
-    background-color: rgb(0, 192, 0);;
-    border: none;
-    height: 3.5rem;
-    width: 100%;
-    margin-top: 1rem;
-  }
-  
-  .insure-another-person-button{
-    
-    border: 2px solid lightgray;
-  }
-  
-  .add-ins-icon{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    fill: gray;
-    margin-right: 0rem;
-    margin-left: -8rem;
-  }
-  
-  .download-documents-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: lightgray;
-    background-color: #ffffff;
-    border: 2px solid lightgray;
-    height: 3rem;
-    width: 18rem;
-    font-size: 14px;
-    font-weight: 600;
-    margin-top: 2rem;
-    border-radius: 10rem;
-  }
-  
-  .download-icon{
-    width: 60%;
-    height: 60%;
-    object-fit: contain;
-    fill: lightgray;
-    margin-right: -3.5rem;
-    margin-left: -5rem;
   }
   
   .space-between-buttons{
