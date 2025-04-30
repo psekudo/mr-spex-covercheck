@@ -17,17 +17,14 @@ header {
   padding: 1rem 5rem 1rem 5rem;
   background: #ffffff;
   margin-top: 0;
+  margin-bottom: 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
 }
 
 /*From here onwards the stylings belong to the page content multistep form*/
 
 .multi_step_form{
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-content: center;
-  align-items: center;
-  max-width: 60rem;
+  width: 60rem;
   height: fit-content;
   margin: 0 auto;
   margin-top: 1rem;
@@ -102,7 +99,7 @@ h2 {
 .form-cell{
   display: flex;
   flex-direction: column;
-  max-width: 62rem;
+  max-width: 100%;
   height: fit-content;
   margin-bottom: 1rem;
   background-color: #ffffff;
@@ -118,7 +115,7 @@ h2 {
   row-gap: 1rem;
   margin-top: 1rem;
   height: fit-content;
-  width: 100%;
+  max-width: 100%;
 }
 
 .form-grid-layout{
@@ -129,15 +126,6 @@ h2 {
   margin-top: 0.5rem;
 }
 
-.form-grid-layout-two{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 1rem;
-  row-gap: 1rem;
-  margin-top: 1.5rem;
-  height: 6rem;
-  width: 80%;
-}
 
 .mini-grid-layout{
   display: grid;
@@ -168,12 +156,9 @@ h2 {
 }
 
 .information-field{
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
   height: fit-content;
   margin-top: 0rem;
   background-color: #ffffff;
@@ -256,13 +241,17 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  width: 100%;
+  max-width: 100%;
   height: fit-content;
   border-radius: 1rem;
   background-color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
   padding: 0.5rem;
+}
+
+.insurance-image{
+  width: 70%;
+  padding: 1rem;
 }
 .insurance-type{
   display: flex;
@@ -283,9 +272,9 @@ h2 {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: fit-content;
+  height: 4rem;
   border-radius: 0.5rem;
-  border: 1px solid #09B285;
+  border: 1.5px solid #09B285;
   margin-top: 0.5rem;
   padding: 0.5rem
 }
@@ -296,7 +285,7 @@ h2 {
   align-items: flex-start;
   height: fit-content;
   width: fit-content;
-  padding-left: 0.5rem;
+  padding: 0 0.25rem 0 0.25rem ;
 }
 
 .double-price-font{
@@ -306,6 +295,7 @@ h2 {
 }
 
 .insurance-price{
+  margin-top: 1rem;
   font-size: 28px;
   font-weight: 600;
   color: gray;
@@ -317,14 +307,33 @@ h2 {
   align-items: center;
   color: #ffffff;
   background-color: #09B285;
-  border-radius: 10rem;
+  border-radius: 0.5rem;
   height: 3.4rem;
   width: 100%;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 800;
   margin-top: 0.5rem;
   margin-bottom: 0rem;
 }
+
+.choose-insurance-button:hover,
+.choose-insurance-button:focus,
+.choose-insurance-button:active{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #09B285;
+  background-color: #ffffff;
+  border: 1.5px solid #09B285;
+  border-radius: 10rem;
+  height: 3.4rem;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 800;
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+}
+
 
 label{
   font-size: 14px;
@@ -435,7 +444,7 @@ input[type="date"] {
 
 .green-price-field{
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   margin: 0 auto;
   width: 100%;
@@ -445,7 +454,7 @@ input[type="date"] {
   border: 1px solid #09B285;
   background-color: #F8FFF9;
   margin-top: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .sub-text-field{
@@ -463,9 +472,16 @@ input[type="date"] {
 
 .health-question{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 0rem;
+}
+
+.hearing-loss{
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1rem;
+  color: gray;
 }
 
 .yes-no-button{
@@ -484,23 +500,6 @@ input[type="date"] {
   color: #ffffff;
 }
 
-.align-text-left{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: fit-content;
-  width: fit-content;
-  padding-left: 0.5rem;
-}
-.align-text-right{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  height: fit-content;
-  width: fit-content;
-  padding-right: 0.5rem;
-}
-
 .checkbox-text-hor{
   display: flex;
   justify-content: center;
@@ -509,7 +508,6 @@ input[type="date"] {
 }
 
 button{
-  padding: 1rem 8rem 1rem 8rem;
   margin: 5rem auto;
   border-radius: 10rem;
   font-size: 18px;
@@ -523,27 +521,34 @@ button{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   margin: 0 auto;
   width: 100%;
   height: fit-content;
 }
 
 .continue-button{
-  color: rgb(0, 192, 0);;
-  background: #ffffff;
+  color: #ffffff;
+  background: #09B285;
   font-weight: 800;
-  border: 1.5px solid rgb(0, 192, 0);;
+  width: 100%;
+  font-weight: 800;
+  font-size: 20px;
+  padding: 1rem 8rem 1rem 8rem;
+}
+
+.back-button{
+  color: #ffffff;
+  background: lightgray;
+  width: 100%;
+  font-weight: 800;
+  font-size: 20px;
+  padding: 1rem 8rem 1rem 8rem;
 }
 
 .continue-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-
-.back-button{
-  color: #ffffff;
-  background: lightgray;
 }
 
 .complete-button{
@@ -601,16 +606,13 @@ button{
 
 
   .multi_step_form{
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-content: center;
-    align-items: center;
-    max-width: 100%;
+    width: 100%;
     height: fit-content;
     margin: 0 auto;
-    margin-top: 1rem;
+    margin-top: 0.25rem;
     background-color: none;
     border: none;
+    padding: 0.25rem;
   }
   
   
@@ -627,6 +629,7 @@ button{
     margin: 0 auto;
     padding: 0.5rem;
     width: 100%;
+    height: fit-content;
     margin-bottom: 0rem;
     background-color: #f4f4f4;
     border-radius: 1rem;
@@ -642,7 +645,7 @@ button{
     font-weight: 600;
     color: #ffffff;
     border-radius: 0.75rem;
-    background-color: rgb(0, 192, 0);;
+    background-color: #09B285;
   }
   
   .indicator-off{
@@ -681,7 +684,7 @@ button{
   .form-cell{
     display: flex;
     flex-direction: column;
-    max-width: 42rem;
+    max-width: 100%;
     height: fit-content;
     margin-bottom: 1rem;
     background-color: #ffffff;
@@ -693,44 +696,33 @@ button{
   .insurance-grid-layout{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 1rem;
-    row-gap: 1rem;
-    margin-top: 1rem;
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+    margin-top: 0.5rem;
     height: fit-content;
-    max-width: 42rem;
+    max-width: 100%;
+    overflow: hidden;
   }
   
   .form-grid-layout{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 1rem;
-    row-gap: 1rem;
+    column-gap: 0.5rem;
+    row-gap: 0rem;
     margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0rem;
   }
 
-  .form-grid-layout-two{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 1rem;
-    row-gap: 0rem;
-    margin-top: 1rem;
-    margin-bottom: 0rem;
-    height: fit-content;
-    width: 100%;
-  }
 
   .information-field{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 100%;
+    width: 100%;
     height: fit-content;
     margin-top: 0rem;
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     padding: 0.5rem;
   }
   
@@ -739,7 +731,8 @@ button{
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    width: 40rem;
+    min-width: 100%;
+    padding: 0 0 0 0.25rem;
   }
   
   .show-more-button{
@@ -749,7 +742,7 @@ button{
     color: #09B285;
     background-color: #ffffff;
     border: none;
-    height: 3rem;
+    height: 2.5rem;
     max-width: fit-content;
     font-size: 12px;
     font-weight: 600;
@@ -767,7 +760,7 @@ button{
     background-color: #ffffff;;
     border: 1px solid #09B285;
     border-radius: 10rem;
-    height: 3rem;
+    height: 2.5rem;
     max-width: fit-content;
     font-size: 12px;
     font-weight: 600;
@@ -811,11 +804,90 @@ button{
     margin: 0 auto;
     max-width: 100%;
     height: fit-content;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.025);
     padding: 0.5rem;
   }
+
+  .insurance-image{
+    width: 90%;
+    padding: 1rem;
+  }
+
+  .type-font{
+    font-size: 14px;
+    font-weight: 600;
+    color: gray;
+  }
+  
+  .insurer-price-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    border-radius: 0.5rem;
+    border: 1.5px solid #09B285;
+    margin-top: 0.5rem;
+    padding: 0.5rem
+  }
+  
+  .left-double-price-align{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: fit-content;
+    width: fit-content;
+    padding: 0 0.25rem 0 0.25rem ;
+  }
+  
+  .double-price-font{
+    font-size: 12px;
+    font-weight: 600;
+    color: gray;
+  }
+  
+  .insurance-price{
+    margin-top: 0.75rem;
+    font-size: 20px;
+    font-weight: 800;
+    color: gray;
+  }
+
+  .choose-insurance-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background-color: #09B285;
+    border-radius: 0.5rem;
+    height: 3.4rem;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 800;
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+  }
+  
+  .choose-insurance-button:hover,
+  .choose-insurance-button:focus,
+  .choose-insurance-button:active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #09B285;
+    background-color: #ffffff;
+    border: 1.5px solid #09B285;
+    border-radius: 10rem;
+    height: 3.4rem;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 800;
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+  }
+  
 
   .ambulant-container{
     display: flex;
@@ -831,7 +903,7 @@ button{
   }
   
 
-  .green-checkbox-price-field{
+  .green-price-field{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -843,20 +915,27 @@ button{
     border: 1px solid rgb(0, 192, 0);;
     background-color: rgb(245, 255, 245);
     margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .ambulant-title-two{
+    font-size: 14px;
+    font-weight: 800;
+    color: black;
+    margin-top: 1rem;
   }
   
   .sub-text-field{
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     color: gray;
   }
   
   .sub-text-field-small{
-    font-size: 10px;
-    font-weight: 400;
-    color: gray;
-    margin-top: 0rem;
+    font-size: 18px;
+    font-weight: 800;
+    color: black;
+    margin-top: 0.5rem;
   }
   
   .checkbox-title{
@@ -879,32 +958,51 @@ button{
     grid-template-columns: 1fr;
     justify-content: space-between;
     align-items: center;
+    gap: 0;
     margin: 0 auto;
     width: 100%;
     height: fit-content;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
   }
 
   .continue-button{
-    color: rgb(0, 192, 0);;
-    background: #ffffff;
+    color: #ffffff;
+    background: #09B285;
     font-weight: 800;
-    border: 1.5px solid rgb(0, 192, 0);;
     width: 100%;
+    font-weight: 800;
+    font-size: 20px;
+    padding: 1rem 8rem 1rem 8rem;
   }
   
   .back-button{
     color: #ffffff;
     background: lightgray;
     width: 100%;
+    font-weight: 800;
+    font-size: 20px;
+    padding: 1rem 8rem 1rem 8rem;
   }
   
   .complete-button{
     color: #ffffff;
-    background: rgb(0, 192, 0);;
+    background: #09B285;
     font-weight: 800;
     width: 100%;
+    font-weight: 800;
+    font-size: 20px;
+    padding: 1rem 8rem 1rem 8rem;
+  }
+
+  button{
+    margin: 5rem auto;
+    border-radius: 10rem;
+    font-size: 18px;
+    font-weight: 800;
+    border: none;
+    margin-top: 1rem;
+    margin-bottom: 0;
   }
 
 }
