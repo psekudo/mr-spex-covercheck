@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import AsyncSelect from 'react-select/async';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import rv from './assets/insurance-rv.png';
 import all from './assets/insurance-all.png';
+import captcha from './assets/captcha-image.png';
 
 const asyncSelectStyles = {
   control: (provided, state) => ({
     ...provided,
-    padding: state.isFocused || state.isHovered ? '0.475rem 1.25rem' : '0.5rem 1.25rem',
+    padding: state.isFocused || state.isHovered ? '0.5rem 0.5rem' : '0.5rem 0.5rem',
     width: '100%',
     borderRadius: '10rem',
     background: state.isFocused || state.isHovered ? '#ffffff' : '#f4f4f4',
-    border: state.isFocused || state.isHovered ? '1px solid rgb(0, 192, 0)' : 'none',
+    border: state.isFocused || state.isHovered ? '1px solid rgb(0, 192, 0)' : '1px solid lightgray',
     boxShadow: 'none',
     fontSize: '14px',
     color: 'gray',
-    fontWeight: state.isFocused || state.isHovered ? 600 : 400,
+    fontWeight: state.isFocused || state.isHovered ? 800 : 800,
     marginTop: '0.75rem',
     minHeight: 'auto',
   }),
@@ -27,12 +30,12 @@ const asyncSelectStyles = {
   singleValue: (provided) => ({
     ...provided,
     color: 'gray',
-    fontWeight: 400,
+    fontWeight: 600,
   }),
   placeholder: (provided) => ({
     ...provided,
     color: 'gray',
-    fontWeight: 400,
+    fontWeight: 600,
   }),
   menu: (provided) => ({
     ...provided,
@@ -44,7 +47,7 @@ const asyncSelectStyles = {
     ...provided,
     backgroundColor: state.isFocused ? '#e6e6e6' : '#f4f4f4',
     color: 'gray',
-    fontWeight: 400,
+    fontWeight: 600,
     cursor: 'pointer',
   }),
   dropdownIndicator: (provided) => ({
@@ -62,8 +65,8 @@ const Form = () => {
   const [step, setStep] = useState(1);
 
   const [formData, setFormData] = useState({
-    insurance: "", insurancefor: "", insurancestartdate: "", genderpronouns: "", name: "", lastname: "", birthday: "", nationality: "", insuranceregion: "", healthinformation: "",
-    postalcode: "", location:"", street: "", housenumber: "", email: "", tel: "", paymentfrequency: "", accountholder: "", /* paymentoptions:"" */ iban: "", bic: "", bank: "", sepapermissions: false, forfitdamages: false, insuranceagreement: false, waiverreciept: false, consentclause:false
+    insurance: "", insurancefor: "", insurancestartdate: "", genderpronouns: "", fullname: "", birthday: "", nationality: "", insuranceregion: "", healthinformation: "",
+    postalcode: "", location:"", street: "", housenumber: "", email: "", tel: "", paymentfrequency: "", accountholder: "", /* paymentoptions:"" */ iban: "", bic: "", bank: "", sepapermissions: false, forfitdamages: false, insuranceagreement: false, waiverreciept: false, consentclause:false, captcha:""
   });
 
   
@@ -133,19 +136,27 @@ const Form = () => {
   
   const handleChange = (eventOrOption, fieldName = null) => {
     if (fieldName) {
-      // Used by AsyncSelect (e.g. for street, if still using it that way)
       const value = eventOrOption ? eventOrOption.value : "";
       setFormData((prev) => ({
         ...prev,
         [fieldName]: value,
       }));
     } else {
-      // Used by native inputs/selects
       const { name, value, type, checked } = eventOrOption.target;
-      setFormData((prev) => ({
-        ...prev,
-        [name]: type === "checkbox" ? checked : value,
-      }));
+  
+      setFormData((prev) => {
+        const updated = {
+          ...prev,
+          [name]: type === "checkbox" ? checked : value,
+        };
+  
+        // If fullname is being changed, and accountholder is still blank, prefill it
+        if (name === "fullname" && !prev.accountholder) {
+          updated.accountholder = value;
+        }
+  
+        return updated;
+      });
     }
   };
   
@@ -187,8 +198,7 @@ const Form = () => {
       return (
         formData.insurancefor &&
         formData.insurancestartdate &&
-        formData.name &&
-        formData.lastname &&
+        formData.fullname &&
         formData.genderpronouns &&
         formData.birthday &&
         formData.nationality &&
@@ -457,13 +467,52 @@ const Form = () => {
               <h1>Daten zu versichernde Person</h1>
               <div className="form-grid-layout">
                 <label>Wen versichern Sie: <select name="insurancefor" value={formData.insurancefor} onChange={handleChange}><option value="">-- Please choose --</option><option value="Me">Me</option><option value="Child">Child</option></select></label>
-                <label>Beginn der Versicherung: <input type="date" name="insurancestartdate" value={formData.insurancestartdate} onChange={handleChange} placeholder="dd.mm.yyyy"/></label>
-                <div className="mini-grid-layout">
-                  <label>Vorname: <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Vorname"/></label>
-                  <label>Nachname: <input type="text" name="lastname" value={formData.lastname} onChange={handleChange} placeholder="Nachname"/></label>
+                <div className="datepicker-wrapper">
+                  <label htmlFor="insurancestartdate">Beginn der Versicherung:</label>
+                    <DatePicker
+                      selected={
+                        formData.insurancestartdate
+                          ? new Date(formData.insurancestartdate)
+                          : null
+                      }
+                      onChange={(date) =>
+                        handleChange({ value: date.toISOString().split("T")[0] }, "insurancestartdate")
+                    }
+                      dateFormat="dd.MM.yyyy"
+                      placeholderText="dd.mm.yyyy"
+                      className="custom-react-date"
+                      wrapperClassName="datepicker-wrapper"
+                    />
+                    <input
+                      type="hidden"
+                      name="insurancestartdate"
+                      value={formData.insurancestartdate || ""}
+                    />
                 </div>
+                <label>Vorname / Nachname: <input type="text" name="fullname" value={formData.fullname} onChange={handleChange} placeholder="Full Name"/></label>
                 <label>Anrede:<select name="genderpronouns" value={formData.genderpronouns} onChange={handleChange}><option value="">-- Please choose --</option><option value="Mr">Mr</option><option value="Ms">Ms</option><option value="Mrs">Mrs</option></select></label>
-                <label>Geburtsdatum: <input type="date" name="birthday" value={formData.birthday} onChange={handleChange} placeholder="Geburtsdatum"/></label>
+                <div className="datepicker-wrapper">
+                  <label htmlFor="birthday">Birthday:</label>
+                    <DatePicker
+                        selected={
+                          formData.birthday
+                            ? new Date(formData.birthday)
+                            : null
+                        }
+                        onChange={(date) =>
+                          handleChange({ value: date.toISOString().split("T")[0] }, "birthday")
+                      }
+                        dateFormat="dd.MM.yyyy"
+                        placeholderText="dd.mm.yyyy"
+                        className="custom-react-date"
+                        wrapperClassName="datepicker-wrapper"
+                      />
+                      <input
+                        type="hidden"
+                        name="birthday"
+                        value={formData.birthday || ""}
+                    />
+                </div>
                 <label>Country / Nationality: <input type="text" name="nationality" value={formData.nationality} onChange={handleChange} placeholder="Nationality"/>
                 </label>
               </div>
@@ -525,7 +574,7 @@ const Form = () => {
                         : null
                     }
                     onChange={handleLocationChange}
-                    placeholder="Type city name..."
+                    placeholder="Type City.."
                     isClearable
                   />
                 </label>
@@ -564,7 +613,7 @@ const Form = () => {
               <h1>Insurance premium</h1>
                 <div className="form-grid-layout">
                   <label>Payment Frequency:<select name="paymentfrequency" value={formData.paymentfrequency} onChange={handleChange}><option value="">-- Please choose --</option><option value="Monthly">Monthly</option><option value="Yearly">Yearly</option></select></label>
-                  <label>Account Holder: <input type="text" name="accountholder" value={formData.name} onChange={handleChange}/></label>
+                  <label>Account Holder: <input type="text" name="accountholder" value={formData.accountholder} onChange={handleChange} placeholder={formData.fullname}/></label>
                 </div>
                 <div className="green-price-field">
                       <div className="space-between">
@@ -587,8 +636,37 @@ const Form = () => {
                   <div className="payment-option-container"></div>
                 </div>
                 <div className="form-grid-layout">
-                  <label>IBAN: <input type="number" name="iban" value={formData.iban} onChange={handleChange} placeholder="IBAN Number"/></label>
-                  <label>BIC: <input type="number" name="bic" value={formData.bic} onChange={handleChange} placeholder="BIC Number"/></label>
+                <label>
+                  IBAN:
+                  <input
+                    type="text"
+                    name="iban"
+                    value={formData.iban}
+                    onChange={(e) => {
+                      const value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+                      if (value.length <= 34) {
+                        handleChange({ target: { name: "iban", value } });
+                      }
+                    }}
+                    placeholder="IBAN Number"
+                  />
+                </label>
+
+                <label>
+                  BIC:
+                  <input
+                    type="text"
+                    name="bic"
+                    value={formData.bic}
+                    onChange={(e) => {
+                      const value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+                      if (value.length <= 11) {
+                        handleChange({ target: { name: "bic", value } });
+                      }
+                    }}
+                    placeholder="BIC Number"
+                  />
+                </label>
                 </div>
                 <label>Bank: <input type="text" name="bank" value={formData.bank} onChange={handleChange} placeholder="Your Bank will Autofill"/></label>
                 <div className="ambulant-container">
@@ -666,7 +744,7 @@ const Form = () => {
               <h1>Download important privacy information</h1>
               <h2>Please download the consent clauses regarding data protection and consent to the collection and use of health data and the declaration of release from confidentiality.</h2>
               <div className="checkbox-text-hor">
-                    <label className="custom-checkbox"><input type="checkbox" name="waiverreciept" checked={formData.consentclause} onChange={(e) =>
+                    <label className="custom-checkbox"><input type="checkbox" name="consentclause" checked={formData.consentclause} onChange={(e) =>
                           setFormData({ ...formData, [e.target.name]: e.target.checked })
                         }
                       />
@@ -679,25 +757,18 @@ const Form = () => {
             <div className="form-cell">
               <h1>Security query</h1>
               <h2>Enter the security code shown in the image above.</h2>
-              <div className="checkbox-text-hor">
-                    <label className="custom-checkbox"><input type="checkbox" name="waiverreciept" checked={formData.consentclause} onChange={(e) =>
-                          setFormData({ ...formData, [e.target.name]: e.target.checked })
-                        }
-                      />
-                    </label>
-                    <h2>By clicking the checkbox, I confirm that I have read and received the "Consent Clauses for Data Protection and Consent to the Collection and Use of Health Data and Declaration of Confidentiality" and consent to the use of my personal data as described therein.
-                    This consent is part of this application and becomes an integral part of the contract.</h2>
-              </div>
+              <img src={captcha} alt="captcha" className="captcha-image" />
+              <label>Input CAPTCHA: <input type="text" name="captcha" value={formData.captcha} onChange={handleChange} placeholder="Type"/></label>
             </div>
             <div className="form-cell">
             <h1>Concluding statement</h1>
-            <h2>By clicking the checkbox, I confirm that I have read and received the "Consent Clauses for Data Protection and Consent to the Collection and Use of Health Data and Declaration of Confidentiality" and consent to the use of my personal data as described therein.
-            This consent is part of this application and becomes an integral part of the contract.</h2>
+            
+            <h2>By clicking on "Apply-Now & Pay," I confirm that the application, including information about my health status, contains all the information I have provided and I agree that the application will be forwarded electronically to the insurance company.</h2>
             <h2>The 'VorsorgePRIVAT' plan(s) are offered in parallel. I have read the explanation in the information sheet
             "Further contractual basis and declarations of the applicant and the persons to be insured."</h2>
               <div className="space-between-buttons">
                 <button type="button" onClick={prevStep} className="back-button">Back</button>
-                <button type="submit" onClick={handleSubmit} className="continue-button" disabled={!isStepValid()}>Apply-Now Online & Pay</button>
+                <button type="submit" onClick={handleSubmit} className="continue-button" disabled={!isStepValid()}>Apply-Now & Pay</button>
               </div>
             </div>
             </>
