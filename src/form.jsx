@@ -5,6 +5,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import rv from './assets/insurance-rv.png';
 import all from './assets/insurance-all.png';
 import captcha from './assets/captcha-image.png';
+import klarna from './assets/klarna.png';
+import paypal from './assets/paypal.png';
+import sofort from './assets/sofort.png';
+import success from './assets/success.svg';
+import { getNames } from "country-list";
+
+const countries = getNames();
 
 const asyncSelectStyles = {
   control: (provided, state) => ({
@@ -65,8 +72,8 @@ const Form = () => {
   const [step, setStep] = useState(1);
 
   const [formData, setFormData] = useState({
-    insurance: "", insurancefor: "", insurancestartdate: "", genderpronouns: "", fullname: "", birthday: "", nationality: "", insuranceregion: "", healthinformation: "",
-    postalcode: "", location:"", street: "", housenumber: "", email: "", tel: "", paymentfrequency: "", accountholder: "", /* paymentoptions:"" */ iban: "", bic: "", bank: "", sepapermissions: false, forfitdamages: false, insuranceagreement: false, waiverreciept: false, consentclause:false, captcha:""
+    insurance: "", insurancefor: "", insurancestartdate: "", genderpronouns: "", name: "", lastname: "", birthday: "", nationality: "", insuranceregion: "", glassesinformation: "", healthinformation: "",
+    postalcode: "", location:"", street: "", housenumber: "", email: "", tel: "", paymentfrequency: "", accountholder: "", /* paymentoptions:"" */ iban: "", bic: "", bank: "", sepapermissions: false, forfitdamages: false, waiverreciept: false, termsConsent:false,  dataprivacy:false, captcha:""
   });
 
   
@@ -160,6 +167,21 @@ const Form = () => {
     }
   };
   
+  const [downloads, setDownloads] = useState({
+    VertragsinformationenDownloaded: false,
+    datenschutzDownloaded: false
+  });
+  
+  const handleDownload = (file, key) => {
+    const link = document.createElement("a");
+    link.href = file;
+    link.download = file.split("/").pop();
+    link.click();
+  
+    setDownloads((prev) => ({ ...prev, [key]: true }));
+  };
+  
+  
   
 
   const [isMoreInfoVisible, setIsMoreInfoVisible] = useState(false);
@@ -178,12 +200,12 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevents default form submission
   
-    // Check if the form is valid before moving to the next step
+    // check if the form is valid before moving to the next step
     if (isStepValid()) {
-      // If valid, move to step 5
+      // if valid move to step 5
       setStep(5); 
     } else {
-      // Optionally, show an error message or highlight invalid fields
+      // error message or highlight invalid fields
       console.log("Form is not valid");
     }
   };
@@ -198,10 +220,12 @@ const Form = () => {
       return (
         formData.insurancefor &&
         formData.insurancestartdate &&
-        formData.fullname &&
+        formData.name &&
+        formData.lastname &&
         formData.genderpronouns &&
         formData.birthday &&
         formData.nationality &&
+        formData.insuranceregion &&
         formData.healthinformation
       );
     }
@@ -224,9 +248,11 @@ const Form = () => {
 
     if (step === 4) {
       return (
-        formData.sepapermissions &&
         formData.forfitdamages &&
-        formData.insuranceagreement
+        formData.waiverreciept &&
+        formData.termsConsent &&
+        formData.dataprivacy &&
+        formData.captcha
       );
     }
   
@@ -466,7 +492,7 @@ const Form = () => {
               </div>
               <h1>Daten zu versichernde Person</h1>
               <div className="form-grid-layout">
-                <label>Wen versichern Sie: <select name="insurancefor" value={formData.insurancefor} onChange={handleChange}><option value="">-- Please choose --</option><option value="Me">Me</option><option value="Child">Child</option></select></label>
+                <label>Wer soll versichert werden <select name="insurancefor" value={formData.insurancefor} onChange={handleChange}><option value="">-- Please choose --</option><option value="Me">Me</option><option value="Child">Child</option></select></label>
                 <div className="datepicker-wrapper">
                   <label htmlFor="insurancestartdate">Beginn der Versicherung:</label>
                     <DatePicker
@@ -489,10 +515,11 @@ const Form = () => {
                       value={formData.insurancestartdate || ""}
                     />
                 </div>
-                <label>Vorname / Nachname: <input type="text" name="fullname" value={formData.fullname} onChange={handleChange} placeholder="Full Name"/></label>
+                <label>Vorname: <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="First Name"/></label>
+                <label>Nachname: <input type="text" name="lastname" value={formData.lastname} onChange={handleChange} placeholder="Last Name"/></label>
                 <label>Anrede:<select name="genderpronouns" value={formData.genderpronouns} onChange={handleChange}><option value="">-- Please choose --</option><option value="Mr">Mr</option><option value="Ms">Ms</option><option value="Mrs">Mrs</option></select></label>
                 <div className="datepicker-wrapper">
-                  <label htmlFor="birthday">Birthday:</label>
+                  <label htmlFor="birthday">Geburtsdatum:</label>
                     <DatePicker
                         selected={
                           formData.birthday
@@ -513,8 +540,25 @@ const Form = () => {
                         value={formData.birthday || ""}
                     />
                 </div>
-                <label>Country / Nationality: <input type="text" name="nationality" value={formData.nationality} onChange={handleChange} placeholder="Nationality"/>
+                
+                <label>Staatsangehörigkeit: 
+                  <select name="nationality" value={formData.nationality} onChange={handleChange}>
+                    <option value="">Select a country</option>
+                    {countries.map((country) => (
+                      <option key={country} value={country}>
+                        {country}
+                      </option>
+                    ))}
+                  </select>
                 </label>
+                <label>Versicherungsregion:<select name="insuranceregion" value={formData.insuranceregion} onChange={handleChange}><option value="">-- Please choose --</option><option value="region1">RegionOne</option><option value="region2">RegionTwo</option><option value="region3">RegionThree</option></select></label>
+              </div>
+              <div className="health-question">
+                <h2 className="hearing-loss">Werden Sehhilfen (Brillen oder Kontaktlinsen) getragen oder sind sie erforderlich?</h2>
+                <div style={{ display: 'flex', gap: '0rem', marginTop: '0rem', marginBottom: '0rem' }}>
+                  <button className="yes-no-button" type="button" onClick={() => setFormData({ ...formData, glassesinformation: "Yes" })}>Yes</button>
+                  <button className="yes-no-button" type="button" onClick={() => setFormData({ ...formData, glassesinformation: "No" })}>No</button>
+                </div>
               </div>
               <div className="ambulant-container">
                   <h2>Die gewünschte Zusatzversicherung kann nur von gesetzlich versicherten Personen abgeschlossen werden. Eine privat
@@ -555,7 +599,7 @@ const Form = () => {
             <div className="form-cell">
               <h1>Contact details of the Policyholder</h1>
               <div className="form-grid-layout">
-                <label>City:
+                <label>Stadt:
                   <AsyncSelect
                     styles={asyncSelectStyles}
                     className="custom-async-select"
@@ -579,7 +623,7 @@ const Form = () => {
                   />
                 </label>
                 <label>
-                  Postal Code:
+                  Postleitzahl:
                   <input
                     type="text"
                     name="postalcode"
@@ -589,7 +633,7 @@ const Form = () => {
                   />
                 </label>
 
-                <label>Street:
+                <label>Straße:
                   <AsyncSelect
                     styles={asyncSelectStyles}
                     className="custom-async-select"
@@ -604,16 +648,16 @@ const Form = () => {
                   />
                 </label>
 
-                <label>Housenumber: <input type="number" name="housenumber" value={formData.housenumber} onChange={handleChange} placeholder="Nr of House on Street"/></label>
-                <label>Email Address: <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="E-Mail"/></label>
-                <label>Phone Number: <input type="tel" name="tel" value={formData.tel} onChange={handleChange} placeholder="Your Phone Nr"/></label>
+                <label>Hausnummer: <input type="number" name="housenumber" value={formData.housenumber} onChange={handleChange} placeholder="Nr of House on Street"/></label>
+                <label>E-Mail: <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="E-Mail"/></label>
+                <label>Telefon: <input type="tel" name="tel" value={formData.tel} onChange={handleChange} placeholder="Your Phone Nr"/></label>
               </div>
             </div>
             <div className="form-cell">  
               <h1>Insurance premium</h1>
                 <div className="form-grid-layout">
-                  <label>Payment Frequency:<select name="paymentfrequency" value={formData.paymentfrequency} onChange={handleChange}><option value="">-- Please choose --</option><option value="Monthly">Monthly</option><option value="Yearly">Yearly</option></select></label>
-                  <label>Account Holder: <input type="text" name="accountholder" value={formData.accountholder} onChange={handleChange} placeholder={formData.fullname}/></label>
+                  <label>Zahlweise:<select name="paymentfrequency" value={formData.paymentfrequency} onChange={handleChange}><option value="">-- Please choose --</option><option value="Monthly">Monthly</option><option value="Yearly">Yearly</option></select></label>
+                  <label>Kontoinhaber: <input type="text" name="accountholder" value={formData.accountholder} onChange={handleChange} placeholder={`${formData.name} ${formData.lastname}`.trim()}                  /></label>
                 </div>
                 <div className="green-price-field">
                       <div className="space-between">
@@ -629,11 +673,12 @@ const Form = () => {
                         <p className="sub-text-field-small">13.47 €</p>
                       </div>
                 </div>
-                <h1>Payment Options:</h1>
+                <h1>Zahlungsmöglichkeiten:</h1>
                 <div className="payment-options-grid-layout">
-                  <div className="payment-option-container"></div>
-                  <div className="payment-option-container"></div>
-                  <div className="payment-option-container"></div>
+                  
+                  <div className="payment-option-container"><img src={paypal} alt="Av-insurance" className="insurance-image"/></div>
+                  <div className="payment-option-container"><img src={klarna} alt="Av-insurance" className="insurance-image"/></div>
+                  <div className="payment-option-container"><img src={sofort} alt="Av-insurance" className="insurance-image"/></div>
                 </div>
                 <div className="form-grid-layout">
                 <label>
@@ -717,18 +762,36 @@ const Form = () => {
                 </div>
             </div>
             <div className="form-cell">
-              <h1>Download important contract information</h1>
-              <h2>Please download the contract information in accordance with Section 7 of the Insurance Contract Act (VVG) (product information sheet, consumer information, and tariff provisions with the associated General Terms and Conditions of Insurance), the information sheet "Further contractual bases and additional declarations of the applicant and the persons to be insured," as well as the information for intermediaries and insurers, the summary of application questions, and the information on waiving advice.</h2>
+              <h1>Download Important Contract Information</h1>
+              <h2>
+                Please download the contract information in accordance with Section 7 of the Insurance Contract Act (VVG) (product information sheet, consumer information, and tariff provisions with the associated General Terms and Conditions of Insurance), the information sheet "Further contractual bases and additional declarations of the applicant and the persons to be insured," as well as the information for intermediaries and insurers, the summary of application questions, and the information on waiving advice.
+              </h2>
+
+              <div className="space-between-buttons">
+                <button type="button" onClick={() => handleDownload("/Vertragsinformationen.pdf", "VertragsinformationenDownloaded")} className="download-button">
+                  Download
+                </button>
+              </div>
+
               <div className="checkbox-text-hor">
-                    <label className="custom-checkbox"><input type="checkbox" name="insuranceagreement" checked={formData.insuranceagreement} onChange={(e) =>
-                          setFormData({ ...formData, [e.target.name]: e.target.checked })
-                        }
-                      />
-                    </label>
-                    <h2>By checking the box, I confirm that I have received the contract information pursuant to Section 7 of the German Insurance Contract Act (VVG) (product information sheet, consumer information, and tariff provisions with the associated General Terms and Conditions of Insurance) in a timely manner before submitting my contract declaration.</h2>
+                <label className="custom-checkbox">
+                  <input type="checkbox" name="termsConsent" checked={formData.termsConsent}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }
+                    disabled={!downloads.VertragsinformationenDownloaded}
+                  />
+                </label>
+                <h2>
+                  By checking the box, I confirm that I have received the contract information pursuant to Section 7 of the German Insurance Contract Act (VVG) (product information sheet, consumer information, and tariff provisions with the associated General Terms and Conditions of Insurance) in a timely manner before submitting my contract declaration.
+                </h2>
               </div>
               <h2>I also confirm that I have read the cancellation policy and the information and explanations in the information sheet "Further contractual bases and additional declarations of the applicant and the persons to be insured," as well as the broker and insurer information, the summary of application questions, and the information on waiving advice.</h2>
             </div>
+
             <div className="form-cell">
               <h1>No paper documents</h1>
               <div className="checkbox-text-hor">
@@ -741,19 +804,32 @@ const Form = () => {
               </div>
             </div>
             <div className="form-cell">
-              <h1>Download important privacy information</h1>
+              <h1>Download Important Privacy Information</h1>
               <h2>Please download the consent clauses regarding data protection and consent to the collection and use of health data and the declaration of release from confidentiality.</h2>
+
+              <div className="space-between-buttons">
+                <button type="button" onClick={() => handleDownload("/Datenschutz.pdf", "datenschutzDownloaded")} className="download-button">Download</button>
+              </div>
+
               <div className="checkbox-text-hor">
-                    <label className="custom-checkbox"><input type="checkbox" name="consentclause" checked={formData.consentclause} onChange={(e) =>
-                          setFormData({ ...formData, [e.target.name]: e.target.checked })
-                        }
-                      />
-                    </label>
-                    <h2>By clicking the checkbox, I confirm that I have read and received the "Consent Clauses for Data Protection and Consent to the Collection and Use of Health Data and Declaration of Confidentiality" and consent to the use of my personal data as described therein.
-                    This consent is part of this application and becomes an integral part of the contract.</h2>
+                <label className="custom-checkbox">
+                  <input type="checkbox" name="dataprivacy" checked={formData.dataprivacy}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        [e.target.name]: e.target.checked,
+                      })
+                    }
+                    disabled={!downloads.datenschutzDownloaded}
+                  />
+                </label>
+                <h2>
+                By clicking the checkbox, I confirm that I have read and received the "Consent Clauses for Data Protection and Consent to the Collection and Use of Health Data and Declaration of Confidentiality" and consent to the use of my personal data as described therein.
+                This consent is part of this application and becomes an integral part of the contract
+                </h2>
               </div>
             </div>
-            
+ 
             <div className="form-cell">
               <h1>Security query</h1>
               <h2>Enter the security code shown in the image above.</h2>
@@ -776,7 +852,38 @@ const Form = () => {
 
           {step === 5 && (
             <>
-            
+            <div className="form-cell">
+              <h1 className="split-a-bit">Vielen Dank für Ihr Vertrauen und Ihre Entscheidung für die Bayerische Beamtenkrankenkasse AG als Partner rund um Ihre Gesundheit.</h1>
+              <h1 className="split-a-bit">Ihr Antrag mit der Antragsnummer MY642450230XXJR ist bei uns eingegangen.</h1>
+              <h2 className="split-a-bit">Ihre Daten sind sicher und verschlüsselt bei uns angekommen. Das bestätigen wir Ihnen auch noch einmal per Mail.</h2>
+              <div className="space-between-buttons">
+                <button
+                  type="button"
+                  onClick={() => handleDownload("")}
+                  className="download-button"
+                >
+                  Download
+                </button>
+              </div>
+            </div>
+            <div className="form-cell">
+                <img className="final-svg" src={success} alt="success"/>
+            </div>
+            <div className="form-cell">
+                <div className="message-grid-layout">
+                  <div className="message-container"><h1 className="msg-color">Wir haben Ihren Antrag erhalten.</h1></div>
+                  <div className="message-container"><h1 className="msg-color">Wir prüfen Ihren Antrag.</h1></div>
+                  <div className="message-container"><h1 className="msg-color">Sie erhalten Ihre Unterlagen.</h1></div>
+                </div>
+            </div>
+            <div className="form-cell">
+                <h2>Bayerische Beamtenkrankenkasse AG</h2>
+                <h2>Postanschrift: Maximilianstraße 53, 81537 München</h2>
+                <h2>Hausanschrift: Warngauer Straße 30, 81539 München</h2>
+                <h2>E-Mail: service@vkb.de</h2>
+                <h2>Telefon: (089) 2160-69 00</h2>
+                <h2>Fax: (089) 21 60-80 01</h2>
+            </div>
             </>
           )}
         </form>
