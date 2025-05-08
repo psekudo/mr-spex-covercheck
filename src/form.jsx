@@ -514,9 +514,9 @@ const Form = () => {
                       value={formData.insurancestartdate || ""}
                     />
                 </div>
-                <label>Vorname: <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Vor Name"/></label>
-                <label>Nachname: <input type="text" name="lastname" value={formData.lastname} onChange={handleChange} placeholder="Nach Name"/></label>
-                <label>Anrede:<select name="genderpronouns" value={formData.genderpronouns} onChange={handleChange}><option value="">-- Bitte wählen --</option><option value="Mr">Mr</option><option value="Ms">Ms</option><option value="Mrs">Mrs</option></select></label>
+                <label>Vorname: <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Vorname"/></label>
+                <label>Nachname: <input type="text" name="lastname" value={formData.lastname} onChange={handleChange} placeholder="Nachname"/></label>
+                <label>Anrede:<select name="genderpronouns" value={formData.genderpronouns} onChange={handleChange}><option value="">-- Bitte wählen --</option><option value="Mr">Herr</option><option value="Ms">Herrin</option><option value="Mrs">Frau</option><option value="Dr">Dr</option></select></label>
                 <div className="datepicker-wrapper">
                   <label htmlFor="birthday">Geburtsdatum:</label>
                     <DatePicker
