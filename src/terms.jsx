@@ -16,7 +16,6 @@ const Terms = () => {
     <div className="container">
       <div id="logo-header" style={{ textAlign: "center" }}>
         <img src={mrspek} alt="Mr. Spex Logo" className="header-img2"/>
-        <img src={coverck} alt="Covercheck" className="header-img2"/>
       </div>
 
       <div className="multi_step_form">
