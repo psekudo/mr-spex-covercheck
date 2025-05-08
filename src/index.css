@@ -34,7 +34,7 @@ header {
 
 .form-step-indicator{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
@@ -293,6 +293,7 @@ h2 {
   font-size: 15px;
   font-weight: 600;
   color: #09B285;
+  margin-top: 0rem;
 }
 
 .insurance-price{
@@ -636,6 +637,7 @@ button{
 .split-a-bit{
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  color: black;
 }
 
 .message-grid-layout{
@@ -689,7 +691,7 @@ button{
 
   .form-step-indicator-mobile{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
