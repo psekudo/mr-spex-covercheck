@@ -505,7 +505,7 @@ select {
   margin-top: 0rem;
 }
 
-.yes-no-button:active,
+.yes-no-button.active,
 .yes-no-button:hover,
 .yes-no-button:focus{
   padding: 0.8rem 2rem 0.8rem 2rem;
@@ -691,7 +691,7 @@ button{
 
   .form-step-indicator-mobile{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1f4;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
