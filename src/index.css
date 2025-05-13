@@ -34,7 +34,7 @@ header {
 
 .form-step-indicator{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
@@ -691,7 +691,7 @@ button{
 
   .form-step-indicator-mobile{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1f4;
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
