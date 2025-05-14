@@ -558,7 +558,7 @@ const Form = () => {
                       onChange={(date) =>
                         handleChange({ value: date.toISOString().split("T")[0] }, "insurancestartdate")
                     }
-                      dateFormat="TT.MM.JJJJ"
+                      dateFormat="dd.MM.yyyy"
                       placeholderText="TT.MM.JJJJ"
                       className="custom-react-date"
                       wrapperClassName="datepicker-wrapper"
@@ -583,7 +583,7 @@ const Form = () => {
                         onChange={(date) =>
                           handleChange({ value: date.toISOString().split("T")[0] }, "birthday")
                       }
-                        dateFormat="TT.MM.JJJJ"
+                        dateFormat="dd.MM.yyyy"
                         placeholderText="TT.MM.JJJJ"
                         className="custom-react-date"
                         wrapperClassName="datepicker-wrapper"
@@ -715,7 +715,7 @@ const Form = () => {
                 </div>
                 <div className="green-price-field">
                       <div className="space-between">
-                        <h1 className="ambulant-title">PensionPRIVATE</h1>
+                        <h1 className="ambulant-title">VorsorgePRIVATE</h1>
                         <p className="sub-text-field">13.47 €</p>
                       </div>
                       <div className="space-between">
