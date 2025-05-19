@@ -73,8 +73,8 @@ const Form = () => {
   const [step, setStep] = useState(1);
 
   const [formData, setFormData] = useState({
-    insurance: "", insurancefor: "", insurancestartdate: "", genderpronouns: "", name: "", lastname: "", birthday: "", nationality: "Germany", insuranceregion: "", glassesinformation: null, healthinformation: "",
-    postalcode: "", location:"", street: "", housenumber: "", email: "", tel: "", paymentfrequency: "", accountholder: "", /* paymentoptions:"" */ iban: "", bic: "", bank: "", sepapermissions: false, forfitdamages: false, waiverreciept: false, termsConsent:false,  dataprivacy:false, captcha:""
+    insurance: "", insurancefor: "", insurancestartdate: "", genderpronouns: "", name: "", lastname: "", birthday: "", nationality: "Germany", insuranceregion: "Sonstige deutsche gesetzliche Krakenversicherung", glassesinformation: null, healthinformation: "",
+    postalcode: "", location:"", street: "", housenumber: "", email: "", tel: "", paymentfrequency: "", accountholder: "", /* paymentoptions:"" */ iban: "", /* bic: "", */ bank: "", sepapermissions: false, forfitdamages: false, waiverreciept: false, termsConsent:false,  dataprivacy:false, captcha:""
   });
 
   
@@ -253,7 +253,6 @@ const Form = () => {
         formData.tel &&
         formData.paymentfrequency &&
         formData.iban &&
-        formData.bic &&
         formData.bank &&
         formData.sepapermissions
       );
@@ -496,11 +495,11 @@ const Form = () => {
             <div className="form-cell">
                 <div className="space-between">
                   <h1>Tarif VorsorgePRIVAT</h1>
-                  <button type="button" onClick={() => setIsMoreInfoVisible(!isMoreInfoVisible)} className="show-more-button">Weitere Informationen</button>
+                  {/* <button type="button" onClick={() => setIsMoreInfoVisible(!isMoreInfoVisible)} className="show-more-button">Weitere Informationen</button> */}
                 </div>
                 <h2 className="h2-title">Ich beantrage bei der Bayerischen Beamtenkrankenkasse AG den Abschluss der ausgewählten Krankenversicherung(en),
                   mit folgenden Leistungen.</h2>
-                { isMoreInfoVisible && (
+                {/* { isMoreInfoVisible && ( */}
                   <div className="more-information-container">
                     <div className="more-info-group">
                       <div className="more-info-unit">
@@ -536,7 +535,7 @@ const Form = () => {
 
                     </div>
                   </div>
-                )}
+                {/* )} */}
               <div className="ambulant-container">
                   <h1 className="ambulant-title">Vorvertragliche Anzeigepflicht</h1>
                     <h2>Die in diesem Antrag gestellten Fragen sind nach bestem Wissen wahrheitsgemäß und vollständig zu beantworten; dabei
@@ -615,7 +614,7 @@ const Form = () => {
                     ))}
                   </select>
                 </label>
-                <label>Wo besteht Ihre Krankenversicherung:<select name="insuranceregion" value={formData.insuranceregion} onChange={handleChange}><option value="region1">Sonstige deutsche gesetzliche Krakenversicherung</option><option value="region2">Ausländische gesetzliche Krakenversicherung</option></select></label>
+                <label>Wo besteht Ihre Krankenversicherung:<select name="insuranceregion" value={formData.insuranceregion} onChange={handleChange}><option value="region1">Sonstige deutsche gesetzliche Krankenversicherung</option><option value="region2">Ausländische gesetzliche Krankenversicherung</option></select></label>
               </div>
               <div className="health-question">
                 <h2 className="hearing-loss">Werden Sehhilfen (Brillen oder Kontaktlinsen) getragen oder sind sie erforderlich?</h2>
@@ -682,7 +681,7 @@ const Form = () => {
                         : null
                     }
                     onChange={handleLocationChange}
-                    placeholder="Typ Stadt.."
+                    placeholder="Stadt..."
                     isClearable
                   />
                 </label>
@@ -707,7 +706,7 @@ const Form = () => {
                     value={formData.street ? { label: formData.street, value: formData.street } : null}
                     onChange={(selected) => handleChange(selected, "street")}
                     isDisabled={!formData.postalcode}
-                    placeholder="Straßen.."
+                    placeholder="Straßen..."
                     isClearable
                   />
                 </label>
@@ -761,7 +760,7 @@ const Form = () => {
                   />
                 </label>
 
-                <label>
+                {/* <label>
                   BIC:
                   <input
                     type="text"
@@ -775,9 +774,10 @@ const Form = () => {
                     }}
                     placeholder="BIC Nummer"
                   />
-                </label>
-                </div>
+                </label> */}
                 <label>Bank: <input type="text" name="bank" value={formData.bank} onChange={handleChange} placeholder="Ihre Bank füllt automatisch aus"/></label>
+                </div>
+                
                 <div className="ambulant-container">
                   <div className="checkbox-text-hor">
                   <label className="custom-checkbox"><input type="checkbox" name="sepapermissions" checked={formData.sepapermissions} onChange={(e) =>
