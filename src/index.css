@@ -34,7 +34,7 @@ header {
 
 .form-step-indicator{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
@@ -499,10 +499,38 @@ select {
   color: gray;
 }
 
+.herr-frau-grid{
+  display: grid;
+  grid-Template-Columns: 1fr 1fr;
+  width: 100%;
+  justify-Content: center;
+  align-items: center;
+  column-gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.herr-frau-button{
+  padding: 0.8rem 2rem 0.8rem 2rem;
+  margin-left: 0rem;
+  margin-top: 0rem;
+  width: 100%;
+}
+
+.herr-frau-button.active,
+.herr-frau-button:hover,
+.herr-frau-button:focus{
+  padding: 0.8rem 2rem 0.8rem 2rem;
+  margin-left: 0.5rem;
+  margin-top: 0rem;
+  background-color: #09B285;
+  color: #ffffff;
+}
+
 .yes-no-button{
   padding: 0.8rem 2rem 0.8rem 2rem;
   margin-left: 0.5rem;
   margin-top: 0rem;
+  width: 100%;
 }
 
 .yes-no-button.active,
@@ -542,14 +570,26 @@ button{
   height: fit-content;
 }
 
+.grid-between-buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 auto;
+  width: 100%;
+  height: fit-content;
+}
+
 .continue-button{
   color: #ffffff;
   background: #09B285;
   font-weight: 800;
   width: 100%;
+  height: 4rem;
   font-weight: 800;
-  font-size: 20px;
-  padding: 1rem 8rem 1rem 8rem;
+  font-size: 18px;
+  padding: 1rem 4rem 1rem 4rem;
 }
 
 .download-button{
@@ -691,7 +731,7 @@ button{
 
   .form-step-indicator-mobile{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 0.5rem;
     justify-content: center;
     align-items: center;

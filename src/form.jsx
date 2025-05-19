@@ -73,16 +73,16 @@ const Form = () => {
   const [step, setStep] = useState(1);
 
   const [formData, setFormData] = useState({
-    insurance: "", insurancefor: "", insurancestartdate: "", genderpronouns: "", name: "", lastname: "", birthday: "", nationality: "", insuranceregion: "", glassesinformation: null, healthinformation: "",
+    insurance: "", insurancefor: "", insurancestartdate: "", genderpronouns: "", name: "", lastname: "", birthday: "", nationality: "Germany", insuranceregion: "", glassesinformation: null, healthinformation: "",
     postalcode: "", location:"", street: "", housenumber: "", email: "", tel: "", paymentfrequency: "", accountholder: "", /* paymentoptions:"" */ iban: "", bic: "", bank: "", sepapermissions: false, forfitdamages: false, waiverreciept: false, termsConsent:false,  dataprivacy:false, captcha:""
   });
 
   
   const price =
     formData.glassesinformation === 'Yes'
-      ? '€17.47'
+      ? '€17.45'
       : formData.glassesinformation === 'No'
-      ? '€13.47'
+      ? '€13.45'
       : '';
   
   const priceplus =
@@ -218,12 +218,14 @@ const Form = () => {
     // check if the form is valid before moving to the next step
     if (isStepValid()) {
       // if valid move to step 5
-      setStep(5); 
+      setStep(4); 
     } else {
       // error message or highlight invalid fields
       console.log("Form is not valid");
     }
   };
+
+  
   
   
   const isStepValid = () => {  
@@ -571,7 +573,13 @@ const Form = () => {
                 </div>
                 <label>Vorname: <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Vorname"/></label>
                 <label>Nachname: <input type="text" name="lastname" value={formData.lastname} onChange={handleChange} placeholder="Nachname"/></label>
-                <label>Anrede:<select name="genderpronouns" value={formData.genderpronouns} onChange={handleChange}><option value="">-- Bitte wählen --</option><option value="Mr">Herr</option><option value="Ms">Herrin</option><option value="Mrs">Frau</option><option value="Dr">Dr</option></select></label>
+                <label>Anrede:
+                  <div className="herr-frau-grid">
+                    <button className={`herr-frau-button ${formData.genderpronouns === "Herr" ? "active" : ""}`} type="button" onClick={() => setFormData({ ...formData, genderpronouns: "Herr" })}>Herr</button>
+                    <button className={`herr-frau-button ${formData.genderpronouns === "Frau" ? "active" : ""}`} type="button" onClick={() => setFormData({ ...formData, genderpronouns: "Frau" })}>Frau</button>
+                  </div>
+                </label>
+                {/* <label>Anrede:<select name="genderpronouns" value={formData.genderpronouns} onChange={handleChange}><option value="">-- Bitte wählen --</option><option value="Mr">Herr</option><option value="Ms">Herrin</option><option value="Mrs">Frau</option><option value="Dr">Dr</option></select></label> */}
                 <div className="datepicker-wrapper">
                   <label htmlFor="birthday">Geburtsdatum:</label>
                     <DatePicker
@@ -597,7 +605,9 @@ const Form = () => {
                 
                 <label>Staatsangehörigkeit: 
                   <select name="nationality" value={formData.nationality} onChange={handleChange}>
-                    <option value="">Wählen Sie ein Land</option>
+                    {formData.nationality === "" && (
+                      <option value="">Wählen Sie ein Land</option>
+                    )}
                     {countries.map((country) => (
                       <option key={country} value={country}>
                         {country}
@@ -605,7 +615,7 @@ const Form = () => {
                     ))}
                   </select>
                 </label>
-                <label>Versicherungsregion:<select name="insuranceregion" value={formData.insuranceregion} onChange={handleChange}><option value="region1">Sonstige deutsche gesetzliche Krakenversicherung</option><option value="region2">Ausländische gesetzliche Krakenversicherung</option></select></label>
+                <label>Wo besteht Ihre Krankenversicherung:<select name="insuranceregion" value={formData.insuranceregion} onChange={handleChange}><option value="region1">Sonstige deutsche gesetzliche Krakenversicherung</option><option value="region2">Ausländische gesetzliche Krakenversicherung</option></select></label>
               </div>
               <div className="health-question">
                 <h2 className="hearing-loss">Werden Sehhilfen (Brillen oder Kontaktlinsen) getragen oder sind sie erforderlich?</h2>
@@ -629,7 +639,7 @@ const Form = () => {
               <div className="green-price-field">
                       <div className="space-between">
                         <h1 className="ambulant-title">Vorsorge Private</h1>
-                        <p className="sub-text-field">€ 13.47</p>
+                        <p className="sub-text-field">€ 13.45</p>
                       </div>
                       <div className="space-between">
                         <h2>Risikozuschlag für Sehhilfen</h2>
@@ -640,7 +650,7 @@ const Form = () => {
                         <p className="sub-text-field-small">{price && <p>{price}</p>}</p>
                       </div>
               </div>
-              <div className="space-between-buttons">
+              <div className="grid-between-buttons">
                 <button type="button" onClick={prevStep} className="back-button">Zurück</button>
                 <button type="button" onClick={nextStep} className="continue-button" disabled={!isStepValid()}>Weitermachen</button>
               </div>
@@ -715,18 +725,18 @@ const Form = () => {
                 </div>
                 <div className="green-price-field">
                       <div className="space-between">
-                        <h1 className="ambulant-title">VorsorgePRIVATE</h1>
-                        <p className="sub-text-field">13.47 €</p>
+                        <h1 className="ambulant-title">Vorsorge Private</h1>
+                        <p className="sub-text-field">€ 13.45</p>
                       </div>
                       <div className="space-between">
-                        <h2>Zzgl. Risikozuschlag für Sehhilfen</h2>
-                        <p className="sub-text-field">4.00 €</p>
+                        <h2>Risikozuschlag für Sehhilfen</h2>
+                        <p className="sub-text-field">{priceplus && <p>{priceplus}</p>}</p>
                       </div>
                       <div className="space-between">
                         <h2 className="ambulant-title-two">Ihr monatlicher Beitrag</h2>
-                        <p className="sub-text-field-small">13.47 €</p>
+                        <p className="sub-text-field-small">{price && <p>{price}</p>}</p>
                       </div>
-                </div>
+              </div>
                 {/* <h1>Zahlungsmöglichkeiten:</h1>
                 <div className="payment-options-grid-layout">
                   
@@ -781,7 +791,7 @@ const Form = () => {
                   <h2>Gleichzeitig weise ich meinen im Antrag genannten Zahlungsdienstleister an, die von der Bayerischen Beamtenkrankenkasse AG auf mein Konto gezogenen SEPA-Lastschriften einzulösen. (Informationen zum SEPA-Lastschriftmandat finden Sie auch in den zusätzlichen Vertragsgrundlagen und ergänzenden Erklärungen des Antragstellers und der zu versichernden Personen.)</h2>
                 </div>
             
-              <div className="space-between-buttons">
+              <div className="grid-between-buttons">
                 <button type="button" onClick={prevStep} className="back-button">Zurück</button>
                 <button type="button" onClick={nextStep} className="continue-button" disabled={!isStepValid()}>Weitermachen</button>
               </div>
@@ -890,7 +900,7 @@ const Form = () => {
             
             <h2>Mit dem Klick auf „Jetzt beantragen & bezahlen“ bestätige ich, dass der Antrag inklusive der Angaben zu meinem Gesundheitszustand alle von mir gemachten Angaben enthält und bin mit der elektronischen Weiterleitung des Antrags an die Krankenkasse einverstanden.</h2>
             <h2>Die VorsorgePRIVAT-Tarife werden parallel angeboten. Ich habe die Erläuterungen im Informationsblatt „Weitere Vertragsgrundlagen und Erklärungen des Antragstellers und der zu versichernden Personen“ gelesen.</h2>
-              <div className="space-between-buttons">
+              <div className="grid-between-buttons">
                 <button type="button" onClick={prevStep} className="back-button">Zurück</button>
                 <button type="submit" onClick={handleSubmit} className="continue-button" disabled={!isStepValid()}>Jetzt beantragen & bezahlen</button>
               </div>
