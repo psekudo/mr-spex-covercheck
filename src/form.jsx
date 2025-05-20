@@ -10,9 +10,7 @@ import paypal from './assets/paypal.png';
 import sofort from './assets/sofort.png';
 import success from './assets/success.svg';
 import { getNames } from "country-list";
-
-
-const countries = getNames();
+import countries from './assets/world.json';
 
 const asyncSelectStyles = {
   control: (provided, state) => ({
@@ -73,7 +71,7 @@ const Form = () => {
   const [step, setStep] = useState(1);
 
   const [formData, setFormData] = useState({
-    insurance: "", insurancefor: "", insurancestartdate: "", genderpronouns: "", name: "", lastname: "", birthday: "", nationality: "Germany", insuranceregion: "Sonstige deutsche gesetzliche Krakenversicherung", glassesinformation: null, healthinformation: "",
+    insurance: "", insurancefor: "", insurancestartdate: "", genderpronouns: "", name: "", lastname: "", birthday: "", nationality: "Deutschland", insuranceregion: "Sonstige deutsche gesetzliche Krakenversicherung", glassesinformation: null, healthinformation: "",
     postalcode: "", location:"", street: "", housenumber: "", email: "", tel: "", paymentfrequency: "", accountholder: "", /* paymentoptions:"" */ iban: "", /* bic: "", */ bank: "", sepapermissions: false, forfitdamages: false, waiverreciept: false, termsConsent:false,  dataprivacy:false, captcha:""
   });
 
@@ -602,18 +600,24 @@ const Form = () => {
                     />
                 </div>
                 
-                <label>Ihre Staatsangehörigkeit und Ihr Versicherungsland: 
-                  <select name="nationality" value={formData.nationality} onChange={handleChange}>
+                <label>
+                  Ihre Staatsangehörigkeit und Ihr Versicherungsland:
+                  <select
+                    name="nationality"
+                    value={formData.nationality}
+                    onChange={handleChange}
+                  >
                     {formData.nationality === "" && (
                       <option value="">Wählen Sie ein Land</option>
                     )}
                     {countries.map((country) => (
-                      <option key={country} value={country}>
-                        {country}
+                      <option key={country.alpha2} value={country.name}>
+                        {country.name}
                       </option>
                     ))}
                   </select>
                 </label>
+
                 <label>Wo besteht Ihre Krankenversicherung:<select name="insuranceregion" value={formData.insuranceregion} onChange={handleChange}><option value="region1">Sonstige deutsche gesetzliche Krankenversicherung</option><option value="region2">Ausländische gesetzliche Krankenversicherung</option></select></label>
               </div>
               <div className="health-question">
@@ -691,7 +695,7 @@ const Form = () => {
                     type="text"
                     name="postalcode"
                     value={formData.postalcode}
-                    readOnly
+                    onChange={handleChange}
                     placeholder="Wird automatisch ausgefüllt"
                   />
                 </label>
